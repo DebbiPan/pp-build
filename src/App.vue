@@ -1,15 +1,12 @@
 <template>
-  <div>hi</div>
-  <Debbie />
+  <router-view />
 </template>
 
 <script>
-import Debbie from './components/Debbie.vue'
 
 export default {
   name: 'App',
-  components: {
-    Debbie
-  }
 }
 </script>
+
+
