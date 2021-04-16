@@ -1,11 +1,11 @@
 <template>
   <div class="topnav">
     <div class="toggleAside" @click="toggleMenu">
-      <img src="../assets/img/list.png" alt="">
+      <img src="../assets/img/list.png" alt="列表">
     </div>
     <div class="logo">
       <router-link to="/">
-        <img src="../assets/img/logopic.png" alt="">
+        <img src="../assets/img/logopic.png" alt="logo">
       </router-link>
     </div>
     <ul class="menu">
