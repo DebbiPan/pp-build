@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Button>hello world</Button>
+    <Button>hello word </Button>
+    <Button theme="button">hello world</Button>
+    <Button theme="link">hello world</Button>
+    <Button theme="text">hello world</Button>
   </div>
 </template>
 
