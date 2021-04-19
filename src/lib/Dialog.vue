@@ -3,10 +3,12 @@
     <div class="build-dialog-overlay" @click="onClickOverlay"></div>
     <div class="build-dialog-wrapper">
       <div class="build-dialog">
-        <header @click="close">标题 <span class="build-dialog-close"></span></header>
+        <header @click="close">
+          <slot name="title"></slot>
+          <span class="build-dialog-close"></span>
+        </header>
         <main>
-          <p>第一行</p>
-          <p>第二行</p>
+          <slot name="content"></slot>
         </main>
         <footer>
           <Button level="main" @click="ok">OK</Button>
