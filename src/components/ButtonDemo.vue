@@ -1,5 +1,5 @@
 <template>
-  <div>Button 示例</div>
+  <div class="title-text">Button 示例</div>
   <h1>示例1</h1>
   <div>
     <Button>你好</Button>
@@ -8,6 +8,7 @@
     <Button theme="link">你好</Button>
     <Button theme="text">你好</Button>
   </div>
+  <br>
   <h1>示例2</h1>
   <div>
     <div>
@@ -26,6 +27,7 @@
       <Button size="small" theme="text">小小小</Button>
     </div>
   </div>
+  <br>
   <h1>示例3</h1>
   <div>
     <div>
@@ -43,12 +45,14 @@
       <Button theme="text">普通文字按钮</Button>
       <Button theme="text" level="danger">危险文字按钮</Button>
     </div>
+    <br>
     <h1>示例4</h1>
     <div>
       <Button disabled>禁用按钮</Button>
       <Button theme="link" disabled>禁用链接按钮</Button>
       <Button theme="text" disabled>禁用文字按钮</Button>
     </div>
+    <br>
     <h1>示例5</h1>
     <div>
       <Button loading>加载中</Button>
@@ -72,5 +76,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.title-text{
+  text-align: center;
+  line-height:30px;
+}
 </style>
