@@ -1,18 +1,218 @@
 <template>
-  <button class="build-button" :class="`theme-${theme}`"><slot/></button>
+  <button class="build-button" :class="classes" :disabled="disabled">
+    <span v-if="loading" class="build-loadingIndicator"></span>
+    <slot/>
+  </button>
 </template>
 
 <script lang="ts">
-  export default {
-    props:{
-      theme:{
-        type:String,
-        default:'button'
+import {computed} from 'vue';
+
+export default {
+  props: {
+    theme: {
+      type: String,
+      default: 'button'
+    },
+    size: {
+      type: String,
+      default: 'normal'
+    },
+    level: {
+      type: String,
+      default: 'normal'
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    }
+  },
+  setup(props) {
+    const {theme, size, level} = props;
+    const classes = computed(() => {
+      return {
+        [`build-theme-${theme}`]: theme,
+        [`build-size-${size}`]: size,
+        [`build-level-${level}`]: level,
+      };
+    });
+    return {classes};
+  }
+};
+</script>
+
+<style lang="scss">
+$h: 32px;
+$border-color: #d9d9d9;
+$color: #aaa;
+$pink: #FFAFC9;
+$radius: 4px;
+$red: red;
+$grey: grey;
+.build-button {
+  box-sizing: border-box;
+  height: $h;
+  padding: 0 12px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  background: #fff;
+  border: 1px solid $border-color;
+  border-radius: $radius;
+  box-shadow: 0 1px 0 fade-out(black, 0.95);
+  transition: background 250ms;
+
+  & + & {
+    margin-left: 8px;
+  }
+
+  &:hover, &:focus {
+    color: $pink;
+    border-color: $pink;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &.build-theme-link {
+    border-color: transparent;
+    box-shadow: none;
+    color: $pink;
+
+    &:hover,
+    &:focus {
+      color: lighten($pink, 10%);
+    }
+  }
+
+  &.build-theme-text {
+    border-color: transparent;
+    box-shadow: none;
+    color: inherit;
+
+    &:hover,
+    &:focus {
+      background: darken(white, 5%);
+    }
+  }
+
+  &.build-size-big {
+    font-size: 24px;
+    height: 48px;
+    padding: 0 16px;
+  }
+
+  &.build-size-small {
+    font-size: 12px;
+    height: 20px;
+    padding: 0 4px;
+  }
+
+  &.build-theme-button {
+    &.build-level-main {
+      background: $pink;
+      color: white;
+      border-color: $pink;
+
+      &:hover, &:focus {
+        background: darken($pink, 10%);
+        border-color: darken($pink, 10%);
+      }
+    }
+
+    &.build-level-danger {
+      background: $red;
+      border-color: $red;
+      color: white;
+
+      &:hover, &:focus {
+        background: darken($red, 10%);
+        border-color: darken($red, 10%);
       }
     }
   }
-</script>
 
-<style lang="scss" scoped>
+  &.build-theme-link {
+    &.build-level-danger {
+      color: $red;
+
+      &:hover,
+      &:focus {
+        color: darken($red, 10%);
+      }
+    }
+  }
+
+  &.build-theme-text {
+    &.build-level-main {
+      color: $pink;
+
+      &:hover,
+      &:focus {
+        color: darken($pink, 10%);
+      }
+    }
+
+    &.build-level-danger {
+      color: $red;
+
+      &:hover,
+      &:focus {
+        color: darken($red, 10%);
+      }
+    }
+  }
+
+
+  &.build-theme-button {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+
+      &:hover {
+        border-color: $grey;
+      }
+    }
+  }
+
+  &.build-theme-link, &.button-theme-text {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+    }
+  }
+
+  > .build-loadingIndicator {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 8px;
+    border-color: $pink $pink $pink transparent;
+    border-style: solid;
+    border-width: 2px;
+    animation: build-spin 1s infinite linear;
+  }
+}
+
+@keyframes build-spin {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
 
 </style>
