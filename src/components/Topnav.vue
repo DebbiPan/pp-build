@@ -36,10 +36,8 @@ img {
 }
 
 .topnav {
-  background: #ffffff;
   display: flex;
   padding: 16px;
-  border-bottom: 1px solid #DCDFE6;
   position: fixed;
   top: 0;
   left: 0;
@@ -74,7 +72,7 @@ img {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-    color: #8CC4FD;
+    color: #269FDF;
     position: absolute;
     right: 16px;
 
