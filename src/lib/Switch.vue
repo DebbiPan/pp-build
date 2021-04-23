@@ -1,12 +1,18 @@
 <template>
-  <button @click="toggle" :class="{checked:value}"><span></span></button>
+  <button @click="toggle" :class="{checked:value}" :disabled="disabled"><span></span></button>
 </template>
 
 <script lang="ts">
 
 export default {
   props:{
-    value:Boolean
+    value:{
+      type:Boolean
+    },
+    disabled:{
+      type:Boolean,
+      default:false
+    }
   },
   setup(props,context){
     const toggle = () =>{
@@ -28,6 +34,10 @@ button{
   background:#aaa;
   border-radius:$h/2;
   position: relative;
+  &[disabled]{
+    cursor: not-allowed;
+    background:darkred;
+  }
 }
 span{
   position: absolute;
@@ -38,6 +48,7 @@ span{
   left:2px;
   border-radius: $h2/2;
   transition: left 250ms;
+
 }
 button:focus{
   outline: none;

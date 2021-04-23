@@ -72,7 +72,7 @@ $grey: grey;
     margin-left: 8px;
   }
 
-  &:hover, &:focus {
+  &:hover {
     color: $pink;
     border-color: $pink;
   }

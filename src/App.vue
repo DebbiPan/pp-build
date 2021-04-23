@@ -5,6 +5,7 @@
 <script lang="ts">
 import {ref, provide} from 'vue';
 import {router} from './router';
+import Markdowm from './components/Markdowm.vue';
 
 export default {
   name: 'App',

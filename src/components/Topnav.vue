@@ -38,7 +38,7 @@ img {
 
 .topnav {
   display: flex;
-  padding: 16px;
+  padding: 8px 16px 0 16px;
   position: fixed;
   top: 0;
   left: 0;
