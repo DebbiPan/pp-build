@@ -1,5 +1,5 @@
 <template>
-  <div class="title-text">Button 示例</div>
+  <div>Button 示例</div>
   <h1>示例1</h1>
   <div>
     <Button>你好</Button>
@@ -76,8 +76,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title-text{
-  text-align: center;
-  line-height:30px;
-}
+
 </style>

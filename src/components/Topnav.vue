@@ -9,8 +9,9 @@
       </router-link>
     </div>
     <ul class="menu">
-      <li>菜单1</li>
-      <li>菜单2</li>
+        <li>
+          <router-link to="/doc">文档</router-link>
+        </li>
     </ul>
   </div>
 </template>
@@ -72,13 +73,15 @@ img {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-    color: #269FDF;
     position: absolute;
     right: 16px;
 
     > li {
       margin: 0 1em;
       line-height: 32px;
+      >a{
+        color: #269FDF;
+      }
     }
   }
 
