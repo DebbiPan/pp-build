@@ -1,3 +1,7 @@
+<demo>
+支持disabled
+</demo>
+
 <template>
   <button @click="toggle" :class="{checked:value}" :disabled="disabled"><span></span></button>
 </template>
