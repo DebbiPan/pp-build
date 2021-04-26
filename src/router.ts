@@ -5,7 +5,6 @@ import SwitchDemo from './components/SwitchDemo.vue'
 import ButtonDemo from './components/ButtonDemo.vue'
 import DialogDemo from './components/DialogDemo.vue'
 import TabsDemo from './components/TabsDemo.vue'
-import DocDemo from './components/DocDemo.vue'
 import {h} from 'vue'
 import Markdown from './components/Markdowm.vue'
 
@@ -24,7 +23,7 @@ export const router = createRouter({
       children: [
         {
           path: '',
-          component: DocDemo
+          redirect: '/doc/intro'
         },
         {
           path:'intro',

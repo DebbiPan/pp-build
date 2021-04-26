@@ -69,6 +69,7 @@ $border-color: #d9d9d9;
   &-code {
     padding: 8px 16px;
     border-top: 1px dashed $border-color;
+    flex-wrap: wrap;
   }
 
   > pre {
