@@ -1,13 +1,8 @@
-<demo>
-支持disabled
-</demo>
-
 <template>
   <button @click="toggle" :class="{checked:value}" :disabled="disabled"><span></span></button>
 </template>
 
 <script lang="ts">
-
 export default {
   props:{
     value:{
