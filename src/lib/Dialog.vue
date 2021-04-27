@@ -42,17 +42,17 @@ export default {
       type: Boolean
     }
   },
-  setup(prop, context) {
+  setup(props, context) {
     const close = () => {
       context.emit('update:visible', false);
     };
     const onClickOverlay = () => {
-      if (prop.onClickOverlay) {
+      if (props.onClickOverlay) {
         close();
       }
     };
     const ok = () => {
-      if (this.props.ok?.() !== false) {
+      if (props.ok && props.ok() !== false) {
         close();
       }
     };
