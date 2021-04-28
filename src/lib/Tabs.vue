@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import Tab from './Tab.vue';
-import {computed, ref, onMounted, onUpdated,watchEffect} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 
 export default {
   props: {
@@ -27,17 +27,15 @@ export default {
     const selectedItem = ref<HTMLDivElement>(null);
     const indicator = ref<HTMLDivElement>(null);
     const container = ref<HTMLDivElement>(null);
-    const x = () => {
+    watchEffect(()=>{
       const {width} = selectedItem.value.getBoundingClientRect();
       indicator.value.style.width = width + 'px';
       const {left: left1} = container.value.getBoundingClientRect();
       const {left: left2} = selectedItem.value.getBoundingClientRect();
       const left = left2 - left1;
       indicator.value.style.left = left + 'px';
-    };
-    onMounted(x);
-    onUpdated(x);
-    //@ts-ignore
+    },{flush:'post'})
+
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
       if (tag.type.name !== Tab.name) {
