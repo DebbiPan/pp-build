@@ -5,9 +5,16 @@
   </button>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup="props">
 import {computed} from 'vue';
 
+declare const props: {
+  theme?: 'button' | 'text' | 'link';
+  size?: 'normal' | 'big' | 'small';
+  level?: 'normal' | 'main' | 'danger';
+  disabled: boolean;
+  loading: boolean;
+};
 export default {
   props: {
     theme: {
@@ -31,18 +38,15 @@ export default {
       default: false
     }
   },
-  setup(props) {
-    const {theme, size, level} = props;
-    const classes = computed(() => {
-      return {
-        [`build-theme-${theme}`]: theme,
-        [`build-size-${size}`]: size,
-        [`build-level-${level}`]: level,
-      };
-    });
-    return {classes};
-  }
 };
+  const {theme, size, level} = props;
+  export const classes = computed(() => {
+    return {
+      [`build-theme-${theme}`]: theme,
+      [`build-size-${size}`]: size,
+      [`build-level-${level}`]: level,
+    };
+  });
 </script>
 
 <style lang="scss">
@@ -79,6 +83,7 @@ $grey: grey;
 
   &:focus {
     outline: none;
+    border-color: $pink;
   }
 
   &::-moz-focus-inner {

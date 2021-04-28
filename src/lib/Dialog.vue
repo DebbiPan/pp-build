@@ -1,29 +1,37 @@
 <template>
   <template v-if="visible">
     <Teleport to="body">
-    <div class="build-dialog-overlay" @click="onClickOverlay"></div>
-    <div class="build-dialog-wrapper">
-      <div class="build-dialog">
-        <header @click="close">
-          <slot name="title"></slot>
-          <span class="build-dialog-close"></span>
-        </header>
-        <main>
-          <slot name="content"></slot>
-        </main>
-        <footer>
-          <Button level="main" @click="ok">OK</Button>
-          <Button @click="cancel">Cancel</Button>
-        </footer>
+      <div class="build-dialog-overlay" @click="onClickOverlay"></div>
+      <div class="build-dialog-wrapper">
+        <div class="build-dialog">
+          <header>
+            <slot name="title"></slot>
+            <span @click="close" class="build-dialog-close"></span>
+          </header>
+          <main>
+            <slot name="content"></slot>
+          </main>
+          <footer>
+            <Button level="main" @click="onClickOk">OK</Button>
+            <Button @click="onClickCancel">Cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
     </Teleport>
   </template>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup="props,context">
 import Button from '../lib/Button.vue';
+import {SetupContext} from 'vue';
 
+declare const props: {
+  visible: boolean;
+  closeOnClickOverlay: boolean;
+  ok: () => boolean;
+  cancel: () => void
+};
+declare const context: SetupContext;
 export default {
   components: {Button},
   props: {
@@ -31,7 +39,7 @@ export default {
       type: Boolean,
       default: false
     },
-    onClickOverlay: {
+    closeOnClickOverlay: {
       type: Boolean,
       default: true
     },
@@ -39,30 +47,28 @@ export default {
       type: Function
     },
     cancel: {
-      type: Boolean
+      type: Function
     }
   },
-  setup(props, context) {
-    const close = () => {
-      context.emit('update:visible', false);
-    };
-    const onClickOverlay = () => {
-      if (props.onClickOverlay) {
-        close();
-      }
-    };
-    const ok = () => {
-      if (props.ok && props.ok() !== false) {
-        close();
-      }
-    };
-    const cancel = () => {
-      context.emit('cancel');
-      close()
-    };
-    return {close, onClickOverlay, ok, cancel};
+};
+export const close = () => {
+  context.emit('update:visible', false);
+};
+export const onClickOverlay = () => {
+  if (props.closeOnClickOverlay) {
+    close();
   }
 };
+export const onClickOk = () => {
+  if (props.ok && props.ok() !== false) {
+    close();
+  }
+};
+export const onClickCancel = () => {
+  props.cancel && props.cancel()
+  close();
+};
+
 
 </script>
 <style lang="scss">
